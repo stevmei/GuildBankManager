@@ -1,0 +1,143 @@
+/***************************************************************************************
+**                                                                                    **
+**  GBM - GuildBankManager                                                            **
+**  Author: Steven M.                                                                 **
+**                                                                                    **
+**  Datei: style0.css                                                                 **
+**                                                                                    **
+**  Standard-Design (Dark)                                                            **
+**                                                                                    **
+***************************************************************************************/
+
+/* position/coordinates > width > border > margin > padding > background-color > color > font > ~ */
+/* Charset UTF-8 */
+@charset "utf-8";
+
+body {
+	width: 1000px;
+	margin: 10px auto;
+	padding: 0px;
+	background-color: #000000;
+	color: #CCCCCC;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	text-align: center;
+	vertical-align: middle;
+}
+* a:link, * a:visited, * a:active {
+	color: #FF9900;
+	text-decoration: none;
+}
+* a:hover {
+	color: #FF3300;
+	text-decoration: none;
+}
+* table {
+	border: none;
+	padding: 0px;
+	border-spacing: 0px;
+	border-collapse: collapse;
+	text-align: left;
+}
+* img {
+	vertical-align: text-top;
+}
+.pageBox {
+	border: 1px solid #333333;
+}
+.navigationBox {
+	padding: 5px 0px;
+	font-weight: bold;
+}
+.contentBox {
+	border-top: 1px solid #333333;
+	padding: 20px 20px;
+}
+.contentBox div {
+	margin: 0px auto;
+}
+.contentBox table {
+	margin: 0px auto;
+}
+.footerCopyright {
+	border-top: 1px solid #333333;
+	padding: 5px;
+}
+.error {
+	color: #FF0000;
+	font-weight: bold;
+}
+.success {
+	color: #006600;
+	font-weight: bold;
+}
+.outerMargin {
+	padding: 10px;
+}
+.simpleBox {
+	padding: 5px;
+}
+.simpleBoxOutline {
+	border: 1px solid #333333;
+	padding: 5px;
+}
+.myInput {
+	width: 300px;
+}
+.myTable {
+	border: 1px solid #555555;
+	color: #999999;
+}
+.myTable tr {
+	border-bottom: 1px solid #555555;
+}
+.myTable th {
+	padding: 5px;
+	background-color: #000000;
+	font-weight: bold;
+}
+
+.myTable th a:link, .myTable th a:visited, .myTable th a:active, .myTable td a:link, .myTable td a:visited, .myTable td a:active {
+	color: #FF9900;
+}
+.myTable th a:hover, .myTable td a:hover {
+	color: #FF3300;
+}
+.myTable td {
+	padding: 5px;
+	background-color: #111111;
+}
+.myTableAlt td {
+	background-color: #222222 !important;
+}
+.myTableFooter td {
+	padding: 25px 15px 15px 15px !important;
+	background-color: #000000 !important;
+	text-align: right;
+	vertical-align: bottom;
+}
+.rare0 a {
+	color: #9D9D9D !important;
+}
+.rare1 a {
+	color: #FFFFFF !important;
+}
+.rare2 a {
+	color: #1EFF00 !important;
+}
+.rare3 a {
+	color: #0070FF !important;
+}
+.rare4 a {
+	color: #A335EE !important;
+}
+.rare5 a {
+	color: #FF8000 !important;
+}
+.rare6 a {
+	color: #E6CC80 !important;
+}
+.rare7 a {
+	color: #E6CC80 !important;
+}
