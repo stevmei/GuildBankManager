@@ -39,6 +39,12 @@ body {
 	border-spacing: 0px;
 	border-collapse: collapse;
 	text-align: left;
+	table-layout: fixed;
+}
+* table td {
+	white-space: normal;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 * img {
 	vertical-align: text-top;
