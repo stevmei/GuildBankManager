@@ -14,6 +14,8 @@
 <br>
 <a href="?page=itempoints">Gildenbank-Inventar: Punkte &auml;ndern</a><br>
 <br>
+<a href="?page=itemvisibility">Gildenbank-Inventar: Sichtbarkeit &auml;ndern</a><br>
+<br>
 </div>
 <div class="contentBox">
 <h2>SQL-Administration</h2>

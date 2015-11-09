@@ -5,6 +5,8 @@ class MyTableHeader {
 	public $widths = Array();
 	public $sortindex;
 	public $sortorder;
+	public $extrasort = false;
+	public $extraindex;
 	public function setTitle($input) {
 		foreach ($input as $value) {
 			$this->titles[] = $value;
@@ -13,11 +15,6 @@ class MyTableHeader {
 	public function setCenter($input) {
 		foreach ($input as $value) {
 			$this->centers[] = $value;
-		}
-	}
-	public function setWidth($input) {
-		foreach ($input as $value) {
-			$this->widths[] = $value;
 		}
 	}
 	public function getCenter($index) {
@@ -31,6 +28,11 @@ class MyTableHeader {
 			return "";
 		}
 	}
+	public function setWidth($input) {
+		foreach ($input as $value) {
+			$this->widths[] = $value;
+		}
+	}
 	public function setSortindex($input) {
 		$this->sortindex = $input;
 	}
@@ -39,26 +41,49 @@ class MyTableHeader {
 			if ($this->sortorder == SORT_ASC) {
 				return "sortindex=".($this->sortindex)."&sortorder=desc";
 			} else {
-				return "sortindex=".($this->sortindex)."&sortorder=asc";
+				if (($this->extrasort) && ($this->extraindex == $index)) {
+					return "sortindex=-1&sortorder=asc";
+				} else {
+					return "sortindex=".($this->sortindex)."&sortorder=asc";
+				}
 			}
 		} else {
-			return "sortindex=".$index."&sortorder=asc";
+			if ($this->sortorder == SORT_ASC) {
+				if (($this->extrasort) && ($this->extraindex == $index)) {
+					return "sortindex=-1&sortorder=desc";
+				} else {
+					return "sortindex=".($index)."&sortorder=desc";
+				}
+			} else {
+				return "sortindex=".($index)."&sortorder=asc";
+			}
 		}
 	}
 	public function setSortorder($input) {
 		$this->sortorder = $input;
+	}
+	public function setExtrasort($input, $key) {
+		$this->extrasort = $input;
+		$this->extraindex = $key;
 	}
 }
 class MyTable {
 	public $headers = Array();
 	public $rows = Array();
 	public $htmlrows = Array();
+	public $extrarows = Array();
 	public $temppage;
+	public $extrasort = false;
+	public $extraindex;
 	public function setHeader($input) {
 		$this->headers = $input;
 	}
 	public function setTemppage($input) {
 		$this->temppage = $input;
+	}
+	public function setExtrasort($input, $key) {
+		$this->extrasort = $input;
+		$this->extraindex = $key;
 	}
 	public function getWidth() {
 		$completewidth = 0;
@@ -79,12 +104,25 @@ class MyTable {
 			$this->htmlrows[sizeof($this->htmlrows) - 1][] = $value;
 		}
 	}
+	public function addExtraKey($input) {
+		$this->extrarows[] = Array();
+		foreach ($input as $value) {
+			$this->extrarows[sizeof($this->extrarows) - 1][] = $value;
+		}
+	}
 	public function sortTable() {
 		$sortarrayA = array();
 		$sortarrayB = array();
-		foreach ($this->rows as $row) {
-			$sortarrayA[] = $row[$this->headers->sortindex];
-			$sortarrayB[] = $row[$this->headers->sortindex];
+		if (($this->extrasort) && ($this->headers->sortindex == -1)) {
+			foreach ($this->extrarows as $row) {
+				$sortarrayA[] = $row[0];
+				$sortarrayB[] = $row[0];
+			}
+		} else {
+			foreach ($this->rows as $row) {
+				$sortarrayA[] = $row[$this->headers->sortindex];
+				$sortarrayB[] = $row[$this->headers->sortindex];
+			}
 		}
 		array_multisort($sortarrayB, $this->headers->sortorder, $this->rows);
 		array_multisort($sortarrayA, $this->headers->sortorder, $this->htmlrows);

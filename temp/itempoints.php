@@ -35,10 +35,12 @@ $tb_header->setCenter(array(true, false, false, true, true));
 $tb_header->setWidth(array(100, 450, 150, 100, 100));
 $tb_header->setSortindex($sortindex);
 $tb_header->setSortorder($sortorder);
+$tb_header->setExtrasort(true, 1);
 // TABELLE DATA
 $tb_table = new MyTable;
 $tb_table->setHeader($tb_header);
 $tb_table->setTemppage(toSaferValue(@$_GET["page"]));
+$tb_table->setExtrasort(true, 1);
 // INVENTAR
 $result = mysql_query("SELECT *, ".$databasename.".".$tableprefix."guildbank.itemid AS use_itemid FROM ".$databasename.".".$tableprefix."guildbank LEFT JOIN ".$databasename.".".$tableprefix."itempoints ON ".$databasename.".".$tableprefix."guildbank.itemid = ".$databasename.".".$tableprefix."itempoints.itemid UNION SELECT *, ".$databasename.".".$tableprefix."itempoints.itemid AS use_itemid FROM ".$databasename.".".$tableprefix."guildbank RIGHT JOIN ".$databasename.".".$tableprefix."itempoints ON ".$databasename.".".$tableprefix."guildbank.itemid = ".$databasename.".".$tableprefix."itempoints.itemid WHERE ".$databasename.".".$tableprefix."guildbank.itemid IS NULL");
 $counter = 0;
@@ -90,6 +92,7 @@ while ($row = @mysql_fetch_assoc($result)) {
 for ($a = 0; $a < count($inventar); $a++) {
 	$tb_table->addRow(array($inventar[$a]["count"], $inventar[$a]["name"], $inventar[$a]["bank"], $inventar[$a]["punkte"], "[link]"));
 	$tb_table->addHtmlrow(array($inventar[$a]["count"], "<div class=\"rare".$inventar[$a]["rare"]."\"><a href=\"http://datenbank.welli-it.de/?item=".$inventar[$a]["id"]."\" target=\"_BLANK\">".$inventar[$a]["name"]."</a></div>", $inventar[$a]["bank"], $inventar[$a]["punkte"], "<a href=\"index.php?page=edititempoints&id=".$inventar[$a]["id"]."\">&auml;ndern</a>"));
+	$tb_table->addExtraKey(array($inventar[$a]["rare"]));
 }
 // TABELLE SORT AND PRINT
 $tb_table->sortTable();

@@ -64,3 +64,11 @@ CREATE TABLE `gbm_sessions` (
   `timestamp` datetime DEFAULT NULL,
   PRIMARY KEY (`sessionid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8$$
+
+delimiter $$
+
+CREATE TABLE `gbm_hiddenitems` (
+  `entryid` int(11) NOT NULL AUTO_INCREMENT,
+  `itemid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`entryid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8$$

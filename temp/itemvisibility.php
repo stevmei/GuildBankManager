@@ -1,3 +1,4 @@
+<!-- ISADMIN -->
 <!-- TEMPLATE -->
 <div class="contentBox">
 <?php
@@ -29,9 +30,9 @@ if ($sortorder == "") {
 }
 // TABELLE HEADER
 $tb_header = new MyTableHeader;
-$tb_header->setTitle(array("Menge", "Itemname", "Bankchar", "Punkte*"));
-$tb_header->setCenter(array(true, false, false, true));
-$tb_header->setWidth(array(100, 450, 150, 100));
+$tb_header->setTitle(array("Menge", "Itemname", "Bankchar", "Punkte*", "ADMIN"));
+$tb_header->setCenter(array(true, false, false, true, true));
+$tb_header->setWidth(array(100, 450, 150, 100, 100));
 $tb_header->setSortindex($sortindex);
 $tb_header->setSortorder($sortorder);
 $tb_header->setExtrasort(true, 1);
@@ -49,7 +50,7 @@ while ($row = @mysql_fetch_assoc($result)) {
 	$counter = $counter + 1;
 }
 // INVENTAR
-$result = mysql_query("SELECT *, ".$databasename.".".$tableprefix."guildbank.itemid AS use_itemid FROM ".$databasename.".".$tableprefix."guildbank LEFT JOIN ".$databasename.".".$tableprefix."itempoints ON ".$databasename.".".$tableprefix."guildbank.itemid = ".$databasename.".".$tableprefix."itempoints.itemid");
+$result = mysql_query("SELECT *, ".$databasename.".".$tableprefix."guildbank.itemid AS use_itemid FROM ".$databasename.".".$tableprefix."guildbank LEFT JOIN ".$databasename.".".$tableprefix."itempoints ON ".$databasename.".".$tableprefix."guildbank.itemid = ".$databasename.".".$tableprefix."itempoints.itemid UNION SELECT *, ".$databasename.".".$tableprefix."itempoints.itemid AS use_itemid FROM ".$databasename.".".$tableprefix."guildbank RIGHT JOIN ".$databasename.".".$tableprefix."itempoints ON ".$databasename.".".$tableprefix."guildbank.itemid = ".$databasename.".".$tableprefix."itempoints.itemid WHERE ".$databasename.".".$tableprefix."guildbank.itemid IS NULL");
 $counter = 0;
 $inventar = array();
 while ($row = @mysql_fetch_assoc($result)) {
@@ -64,9 +65,14 @@ while ($row = @mysql_fetch_assoc($result)) {
 			}
 		}
 	}
-	if ((!$foundinv) && (!in_array($row["use_itemid"], $hiddenitems))) {
+	if (!$foundinv) {
 		$inventar[$counter] = array();
 		$inventar[$counter]["id"] = $row["use_itemid"];
+		if (in_array($row["use_itemid"], $hiddenitems)) {
+			$inventar[$counter]["hidden"] = true;
+		} else {
+			$inventar[$counter]["hidden"] = false;
+		}
 		if ($row["itemname"] == NULL) {
 			$inventar[$counter]["name"] = "ID: ".$row["use_itemid"];
 		} else {
@@ -97,8 +103,12 @@ while ($row = @mysql_fetch_assoc($result)) {
 }
 @mysql_free_result($result);
 for ($a = 0; $a < count($inventar); $a++) {
-	$tb_table->addRow(array($inventar[$a]["count"], $inventar[$a]["name"], $inventar[$a]["bank"], $inventar[$a]["punkte"]));
-	$tb_table->addHtmlrow(array($inventar[$a]["count"], "<div class=\"rare".$inventar[$a]["rare"]."\"><a href=\"http://datenbank.welli-it.de/?item=".$inventar[$a]["id"]."\" target=\"_BLANK\">".$inventar[$a]["name"]."</a></div>", $inventar[$a]["bank"], $inventar[$a]["punkte"]));
+	$tb_table->addRow(array($inventar[$a]["count"], $inventar[$a]["name"], $inventar[$a]["bank"], $inventar[$a]["punkte"], "[link]"));
+	if ($inventar[$a]["hidden"]) {
+		$tb_table->addHtmlrow(array($inventar[$a]["count"], "<div class=\"rare".$inventar[$a]["rare"]."\"><a href=\"http://datenbank.welli-it.de/?item=".$inventar[$a]["id"]."\" target=\"_BLANK\">".$inventar[$a]["name"]."</a></div>", $inventar[$a]["bank"], $inventar[$a]["punkte"], "<a href=\"index.php?page=scripts/editvisibility&id=".$inventar[$a]["id"]."\">anzeigen</a>"));
+	} else {
+		$tb_table->addHtmlrow(array($inventar[$a]["count"], "<div class=\"rare".$inventar[$a]["rare"]."\"><a href=\"http://datenbank.welli-it.de/?item=".$inventar[$a]["id"]."\" target=\"_BLANK\">".$inventar[$a]["name"]."</a></div>", $inventar[$a]["bank"], $inventar[$a]["punkte"], "<a href=\"index.php?page=scripts/editvisibility&id=".$inventar[$a]["id"]."\">verstecken</a>"));
+	}
 	$tb_table->addExtraKey(array($inventar[$a]["rare"]));
 }
 // TABELLE SORT AND PRINT
