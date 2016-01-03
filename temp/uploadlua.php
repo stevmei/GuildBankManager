@@ -21,5 +21,5 @@
 </table>
 </form>
 </div>
-<span style="color: #333333">Zu finden in: ...\WTF\Account\ACCOUNTNAME\SavedVariables\UltimaGuildBankManager.lua</span>
+<span style="color: #333333">Zu finden in: ...\WTF\Account\ACCOUNTNAME\SavedVariables\GuildBankManager.lua</span>
 </div>

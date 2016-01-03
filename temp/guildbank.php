@@ -76,7 +76,7 @@ while ($row = @mysql_fetch_assoc($result)) {
 				$inventar[$a]["bank_count"][$row["bankchar"]] = $row["itemcount"];
 			}
 			if ($row["use_itemid"] == 999999) {
-				$rest = $inventar[$counter]["bank_count"][$row["bankchar"]];
+				$rest = $inventar[$a]["bank_count"][$row["bankchar"]];
 				$gold = floor($rest / 10000);
 				$rest = $rest - ($gold * 10000);
 				$silber = floor($rest / 100);
