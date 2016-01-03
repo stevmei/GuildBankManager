@@ -32,7 +32,7 @@ if ($sortorder == "") {
 $tb_header = new MyTableHeader;
 $tb_header->setTitle(array("Menge", "Itemname", "Bankchar", "Punkte*", "ADMIN"));
 $tb_header->setCenter(array(true, false, false, true, true));
-$tb_header->setWidth(array(100, 450, 150, 100, 100));
+$tb_header->setWidth(array(100, 400, 200, 100, 100));
 $tb_header->setSortindex($sortindex);
 $tb_header->setSortorder($sortorder);
 $tb_header->setExtrasort(true, 1);

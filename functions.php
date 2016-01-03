@@ -101,6 +101,40 @@ function isLogin() {
 	return false;
 }
 
+// Funktion zur Anmeldung eines Benutzers
+function userLogin() {
+	global $inventory_passwd;
+	if (toSaferValue(@$_POST["userlogin_passwd"]) != $inventory_passwd) {
+		postErrOK(0, 600, "Es trat ein Fehler auf!");
+		postRedirect(3, "index.php?page=home");
+	} else {
+		$_SESSION["gbm_invpasswd"] = $inventory_passwd;
+		postErrOK(1, 600, "Sie haben sich erfolgreich angemeldet!");
+		postRedirect(3, "index.php?page=guildbank&filter=&sortindex=1&sortorder=asc");
+	}
+}
+
+// Ueberpruefen, ob ein User Zugriff auf das Inventar hat
+function isAllowed() {
+	global $use_passwd;
+	global $inventory_passwd;
+	if ($use_passwd) {
+		if (isset($_SESSION["gbm_invpasswd"])) {
+			if ($_SESSION["gbm_invpasswd"] == $inventory_passwd) {
+				return true;
+			} else {
+				include("./temp/userlogin.php");
+				return false;
+			}
+		} else {
+			include("./temp/userlogin.php");
+			return false;
+		}
+	} else {
+		return true;
+	}
+}
+
 // Prueft, ob ein Template oder ein Skript eine Anmeldung als Administrator benoetigt.
 // Das jeweilige Template oder Skript muss innerhalb der ersten 5 Zeilen ein <!-- ISADMIN --> enthalten!
 //   page:  Das zu ueberpruefende Template

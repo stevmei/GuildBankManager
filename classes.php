@@ -7,6 +7,7 @@ class MyTableHeader {
 	public $sortorder;
 	public $extrasort = false;
 	public $extraindex;
+	public $filter;
 	public function setTitle($input) {
 		foreach ($input as $value) {
 			$this->titles[] = $value;
@@ -39,23 +40,23 @@ class MyTableHeader {
 	public function getSortindex($index) {
 		if ($this->sortindex == $index) {
 			if ($this->sortorder == SORT_ASC) {
-				return "sortindex=".($this->sortindex)."&sortorder=desc";
+				return "filter=".($this->filter)."&sortindex=".($this->sortindex)."&sortorder=desc";
 			} else {
 				if (($this->extrasort) && ($this->extraindex == $index)) {
-					return "sortindex=-1&sortorder=asc";
+					return "filter=".($this->filter)."&sortindex=-1&sortorder=asc";
 				} else {
-					return "sortindex=".($this->sortindex)."&sortorder=asc";
+					return "filter=".($this->filter)."&sortindex=".($this->sortindex)."&sortorder=asc";
 				}
 			}
 		} else {
 			if ($this->sortorder == SORT_ASC) {
 				if (($this->extrasort) && ($this->extraindex == $index)) {
-					return "sortindex=-1&sortorder=desc";
+					return "filter=".($this->filter)."&sortindex=-1&sortorder=desc";
 				} else {
-					return "sortindex=".($index)."&sortorder=desc";
+					return "filter=".($this->filter)."&sortindex=".($index)."&sortorder=desc";
 				}
 			} else {
-				return "sortindex=".($index)."&sortorder=asc";
+				return "filter=".($this->filter)."&sortindex=".($index)."&sortorder=asc";
 			}
 		}
 	}
@@ -65,6 +66,9 @@ class MyTableHeader {
 	public function setExtrasort($input, $key) {
 		$this->extrasort = $input;
 		$this->extraindex = $key;
+	}
+	public function setFilter($input) {
+		$this->filter = $input;
 	}
 }
 class MyTable {

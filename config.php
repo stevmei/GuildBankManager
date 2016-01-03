@@ -21,4 +21,6 @@ $dbuser = "dbuser";
 $dbpasswd = "passwort";
 $databasename = "database";
 $tableprefix = "gbm_";
+$use_passwd = true;
+$inventory_passwd = "passwort";
 ?>

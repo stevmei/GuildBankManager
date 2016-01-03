@@ -21,11 +21,11 @@
 <h2>SQL-Administration</h2>
 <a href="?page=scripts/install">Erneute Installation ausf&uuml;hren</a><br>
 <br>
-Datenbank bereinigen (Noch nicht implementiert)<br>
+<a href="?page=scripts/cleanupdb">Datenbank bereinigen</a><br>
 <br>
 </div>
 <div class="contentBox">
-Zu dieser Version kompatible AddOn-Versionen: <b>&ge; Version 1.5</b><br>
+Zu dieser Version kompatible AddOn-Versionen: <b>&ge; Version 2.0</b><br>
 <br>
 Publisher / Author: Steven M. (Sigmaroot Administration)
 </div>
