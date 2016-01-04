@@ -18,6 +18,6 @@ if ($found) {
 	mysql_query("INSERT INTO ".$databasename.".".$tableprefix."itempoints (itemid, points) VALUES (".toSaferValue(@$_POST["edititempoints_id"]).", ".toSaferValue(@$_POST["edititempoints_points"]).")");
 	postErrOK(1, 600, "Der Eintrag wurde erfolgreich gespeichert!");
 }
-postRedirect(3, "index.php?page=itempoints");
+postRedirect(3, "index.php?page=itempoints&filter=&sortindex=0&sortorder=asc");
 ?>
 </div>

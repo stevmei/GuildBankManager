@@ -18,6 +18,6 @@ if ($found) {
 	mysql_query("INSERT INTO ".$databasename.".".$tableprefix."hiddenitems (itemid) VALUES (".toSaferValue(@$_GET["id"]).")");
 	postErrOK(1, 600, "Der Eintrag wurde erfolgreich gespeichert!");
 }
-postRedirect(3, "index.php?page=itemvisibility");
+postRedirect(3, "index.php?page=itemvisibility&filter=&sortindex=0&sortorder=asc");
 ?>
 </div>

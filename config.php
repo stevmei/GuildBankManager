@@ -13,6 +13,8 @@
 **                                                                                    **
 ***************************************************************************************/
 
+// Zeitzone einstellen
+date_default_timezone_set('Europe/Berlin');
 // Konstanten / Einstellungen
 $stylenum = "0";                         //  0=dark_classic 1=light_classic <style#.css>
 $admin_passwd = "passwort";

@@ -47,7 +47,7 @@ $types[1] = "<img src=\"./images/list_add.png\" alt=\"Einlagern\" title=\"Einlag
 $types[-1] = "<img src=\"./images/list_remove.png\" alt=\"Auslagern\" title=\"Auslagern\"> Auslagern";
 while ($row = @mysql_fetch_assoc($result)) {
 	$tb_table->addRow(array($row["timestamp"], $row["name"], $row["type"], $row["points"], $row["info"], "[link]"));
-	$tb_table->addHtmlrow(array(mysqlDate($row["timestamp"]), "<a href=\"?page=gbphistory2&name=".$row["name"]."\">".$row["name"]."</a>", $types[$row["type"]], $row["points"], $row["info"], "<a href=\"index.php?page=editgbpentry&id=".$row["historyid"]."\">&auml;ndern</a>"));
+	$tb_table->addHtmlrow(array(mysqlDate($row["timestamp"]), "<a href=\"?page=gbphistoryadmin&name=".$row["name"]."\">".$row["name"]."</a>", $types[$row["type"]], $row["points"], $row["info"], "<a href=\"index.php?page=editgbpentry&id=".$row["historyid"]."\">&auml;ndern</a>"));
 }
 @mysql_free_result($result);
 // TABELLE SORT AND PRINT

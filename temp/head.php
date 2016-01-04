@@ -11,5 +11,5 @@
 <img src="images/banner.png" alt="Banner" title="Banner">
 <div class="pageBox">
 <div class="navigationBox">
-<a href="index.php?page=home">Startseite</a> | <a href="index.php?page=members&sortindex=1&sortorder=asc">Alle Mitglieder</a> | <a href="index.php?page=guildbank&filter=&sortindex=1&sortorder=asc">Gildenbank-Inventar</a> | <a href="index.php?page=gbphistory">Gildenbank-Historie</a> | <a href="http://datenbank.classic-wow.org/" target="_blank">Classic WoW Datenbank</a> | <?php echo getLoginState(); ?>
+<a href="index.php?page=home">Startseite</a> | <a href="index.php?page=members&sortindex=1&sortorder=asc">Alle Mitglieder</a> | <a href="index.php?page=guildbank&filter=&sortindex=1&sortorder=asc">Gildenbank-Inventar</a> | <a href="index.php?page=gbphistory&name=&filter=&sortindex=0&sortorder=desc">Gildenbank-Historie</a> | <a href="http://datenbank.classic-wow.org/" target="_blank">Classic WoW Datenbank</a> | <?php echo getLoginState(); ?>
 </div>

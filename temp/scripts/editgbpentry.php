@@ -33,6 +33,6 @@ if ($found) {
 } else {
 	postErrOK(0, 600, "Dieses Mitglied ist nicht in der Datenbank eingetragen!");
 }
-postRedirect(3, "index.php?page=gbphistory2");
+postRedirect(3, "index.php?page=gbphistoryadmin&name=&filter=&sortindex=0&sortorder=desc");
 ?>
 </div>

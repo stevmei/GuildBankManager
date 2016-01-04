@@ -8,13 +8,13 @@
 <br>
 <a href="?page=addgbpentry">Gildenbank-Eintrag hinzuf&uuml;gen</a><br>
 <br>
-<a href="?page=gbphistory2">Gildenbank-Eintrag &auml;ndern</a><br>
+<a href="?page=gbphistoryadmin&name=&filter=&sortindex=0&sortorder=desc">Gildenbank-Eintrag &auml;ndern</a><br>
 <br>
 <a href="?page=additempoints">Gildenbank-Inventar: Punkte hinzuf&uuml;gen</a><br>
 <br>
-<a href="?page=itempoints">Gildenbank-Inventar: Punkte &auml;ndern</a><br>
+<a href="?page=itempoints&filter=&sortindex=0&sortorder=asc">Gildenbank-Inventar: Punkte &auml;ndern</a><br>
 <br>
-<a href="?page=itemvisibility">Gildenbank-Inventar: Sichtbarkeit &auml;ndern</a><br>
+<a href="?page=itemvisibility&filter=&sortindex=0&sortorder=asc">Gildenbank-Inventar: Sichtbarkeit &auml;ndern</a><br>
 <br>
 </div>
 <div class="contentBox">
