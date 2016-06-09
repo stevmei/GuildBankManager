@@ -27,5 +27,5 @@
 <div class="contentBox">
 Zu dieser Version kompatible AddOn-Versionen: <b>&ge; Version 2.0</b><br>
 <br>
-Publisher / Author: Steven M. (Sigmaroot Administration)
+Author: Steven Meisberger
 </div>
