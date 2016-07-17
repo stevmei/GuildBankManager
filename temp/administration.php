@@ -27,5 +27,5 @@
 <div class="contentBox">
 Zu dieser Version kompatible AddOn-Versionen: <b>&ge; Version 2.0</b><br>
 <br>
-Author: Steven Meisberger
+Author: Steven M.
 </div>
