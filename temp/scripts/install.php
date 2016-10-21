@@ -118,6 +118,22 @@ if ($result === false) {
 	echo $greentext."<br><br>Die Tabelle ".$tableprefix."hiddenitems wurde erfolgreich erstellt!".$endtext;
 }
 @mysql_free_result($result);
+// Version 4.6 - Notizen
+$result = mysql_query("
+CREATE TABLE IF NOT EXISTS ".$tableprefix."itemnotes (
+entryid int(11) NOT NULL AUTO_INCREMENT,
+itemid int(11) DEFAULT NULL,
+itemnote TEXT DEFAULT NULL,
+PRIMARY KEY (entryid)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8
+");
+if ($result === false) {
+	echo $redtext."<br><br>Die Tabelle ".$tableprefix."itemnotes konnte nicht erstellt werden!".$endtext;
+} else {
+	echo $greentext."<br><br>Die Tabelle ".$tableprefix."itemnotes wurde erfolgreich erstellt!".$endtext;
+}
+@mysql_free_result($result);
+
 echo "<br><br>SQL-Installation abgeschlossen! Alles gr&uuml;n = ERFOLG!";
 ?>
 </div>

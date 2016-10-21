@@ -6,15 +6,32 @@
 <br>
 <a href="?page=parselua">LUA-Datei einlesen</a><br>
 <br>
-<a href="?page=addgbpentry">Gildenbank-Eintrag hinzuf&uuml;gen</a><br>
-<br>
-<a href="?page=gbphistoryadmin&name=&filter=&sortindex=0&sortorder=desc">Gildenbank-Eintrag &auml;ndern</a><br>
-<br>
-<a href="?page=additempoints">Gildenbank-Inventar: Punkte hinzuf&uuml;gen</a><br>
-<br>
-<a href="?page=itempoints&filter=&sortindex=0&sortorder=asc">Gildenbank-Inventar: Punkte &auml;ndern</a><br>
-<br>
-<a href="?page=itemvisibility&filter=&sortindex=0&sortorder=asc">Gildenbank-Inventar: Sichtbarkeit &auml;ndern</a><br>
+<table class="myTable" width="600px">
+<colgroup>
+<col width="200px">
+<col width="150px">
+<col width="150px">
+<col width="150px">
+</colgroup>
+<tr align="center">
+<td>Einträge (Buchungen)</td>
+<td>Punkte</td>
+<td>Notizen</td>
+<td>Sichtbarkeit</td>
+</tr>
+<tr align="center" class="myTableAlt">
+<td><a href="?page=addgbpentry">Hinzuf&uuml;gen</a></td>
+<td><a href="?page=additempoints">Hinzuf&uuml;gen</a></td>
+<td><a href="?page=additemnote">Hinzuf&uuml;gen</a></td>
+<td>&nbsp;</td>
+</tr>
+<tr align="center">
+<td><a href="?page=gbphistoryadmin&name=&filter=&sortindex=0&sortorder=desc">&Auml;ndern</a></td>
+<td><a href="?page=itempoints&filter=&sortindex=0&sortorder=asc">&Auml;ndern</a></td>
+<td><a href="?page=itemnotes&filter=&sortindex=0&sortorder=asc">&Auml;ndern</a></td>
+<td><a href="?page=itemvisibility&filter=&sortindex=0&sortorder=asc">&Auml;ndern</a></td>
+</tr>
+</table>
 <br>
 </div>
 <div class="contentBox">

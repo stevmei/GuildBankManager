@@ -11,7 +11,7 @@ while ($row = @mysql_fetch_assoc($result)) {
 @mysql_free_result($result);
 ?>
 <div class="outerMargin">
-<form name="editgbpentry_form" action="?page=scripts/edititempoints" method="post" enctype="multipart/form-data">
+<form name="edititempoints_form" action="?page=scripts/edititempoints" method="post" enctype="multipart/form-data">
 <table class="myTable" width="600px">
 <colgroup>
 <col width="200px">

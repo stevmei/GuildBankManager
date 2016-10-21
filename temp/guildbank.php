@@ -60,6 +60,16 @@ while ($row = @mysql_fetch_assoc($result)) {
 	$hiddenitems[$counter] = $row["itemid"];
 	$counter = $counter + 1;
 }
+// NOTES
+$result = mysql_query("SELECT *FROM ".$databasename.".".$tableprefix."itemnotes");
+$counter = 0;
+$itemnotes = array();
+$itemnotes_text = array();
+while ($row = @mysql_fetch_assoc($result)) {
+	$itemnotes[$counter] = $row["itemid"];
+	$itemnotes_text[$counter] = $row["itemnote"];
+	$counter = $counter + 1;
+}
 // INVENTAR
 $result = mysql_query("SELECT *, ".$databasename.".".$tableprefix."guildbank.itemid AS use_itemid FROM ".$databasename.".".$tableprefix."guildbank LEFT JOIN ".$databasename.".".$tableprefix."itempoints ON ".$databasename.".".$tableprefix."guildbank.itemid = ".$databasename.".".$tableprefix."itempoints.itemid".$onlycharwhere);
 $counter = 0;
@@ -149,7 +159,21 @@ for ($a = 0; $a < count($inventar); $a++) {
 		$kupfer = $rest - ($silber * 100);
 		$tb_table->addHtmlrow(array("1", "<div class=\"rare".$inventar[$a]["rare"]."\">".$gold." <img src=\"images/money_gold.gif\" alt=\"Gold\" title=\"Gold\"> ".$silber." <img src=\"images/money_silver.gif\" alt=\"Silber\" title=\"Silber\"> ".$kupfer." <img src=\"images/money_copper.gif\" alt=\"Kupfer\" title=\"Kupfer\"></div>", $invstring, $inventar[$a]["punkte"]));
 	} else {
-		$tb_table->addHtmlrow(array($inventar[$a]["count"], "<div class=\"rare".$inventar[$a]["rare"]."\"><a href=\"http://datenbank.welli-it.de/?item=".$inventar[$a]["id"]."\" target=\"_BLANK\">".$inventar[$a]["name"]."</a></div>", $invstring, $inventar[$a]["punkte"]));
+		if (in_array($inventar[$a]["id"], $itemnotes)) {
+			$notetext = "";
+			for ($n = 0; $n < count($itemnotes); $n++) {
+				if ($itemnotes[$n] == $inventar[$a]["id"]) {
+					$notetext = $itemnotes_text[$n];
+				}
+			}
+			if ($notetext != "") {
+				$tb_table->addHtmlrow(array($inventar[$a]["count"], "<div class=\"rare".$inventar[$a]["rare"]."\"><a href=\"http://datenbank.welli-it.de/?item=".$inventar[$a]["id"]."\" target=\"_BLANK\">".$inventar[$a]["name"]."</a><br>Notiz: ".$notetext."</div>", $invstring, $inventar[$a]["punkte"]));
+			} else {
+				$tb_table->addHtmlrow(array($inventar[$a]["count"], "<div class=\"rare".$inventar[$a]["rare"]."\"><a href=\"http://datenbank.welli-it.de/?item=".$inventar[$a]["id"]."\" target=\"_BLANK\">".$inventar[$a]["name"]."</a></div>", $invstring, $inventar[$a]["punkte"]));		
+			}
+		} else {
+			$tb_table->addHtmlrow(array($inventar[$a]["count"], "<div class=\"rare".$inventar[$a]["rare"]."\"><a href=\"http://datenbank.welli-it.de/?item=".$inventar[$a]["id"]."\" target=\"_BLANK\">".$inventar[$a]["name"]."</a></div>", $invstring, $inventar[$a]["punkte"]));		
+		}
 	}
 	$tb_table->addExtraKey(array($inventar[$a]["rare"]));
 }
