@@ -40,6 +40,7 @@ if (!file_exists("./".toSaferValue(@$_POST["parselua_file"]))) {
 				case 1:
 					$line = substr(strstr($line, "\""), 1);
 					$line = strstr($line, "\"", true);
+					$line = htmlspecialchars($line, ENT_QUOTES);
 					$parsed = explode("%", $line);
 					echo "<br>Spieler in der Datei gefunden: ".$parsed[0]." - Level ".$parsed[1]." ".$parsed[2]."\n";
 					mysql_query("INSERT INTO ".$databasename.".".$tableprefix."member (name, level, class, gbp) VALUES ('".$parsed[0]."', ".$parsed[1].", '".$parsed[2]."', 0)");
@@ -50,6 +51,7 @@ if (!file_exists("./".toSaferValue(@$_POST["parselua_file"]))) {
 			if (($hereweare == 3) && !($newbank)) {
 				$line = substr(strstr($line, "\""), 1);
 				$line = strstr($line, "\"", true);
+				$line = htmlspecialchars($line, ENT_QUOTES);
 				$parsed = explode("%", $line);
 				echo "<br>Inventar-Eintrag in der Datei gefunden: ".$parsed[0]."x ".$parsed[3]." (ID: ".$parsed[1].")\n";
 				mysql_query("INSERT INTO ".$databasename.".".$tableprefix."guildbank (itemname, itemcount, bankchar, itemid, itemrare) VALUES ('".$parsed[3]."', ".$parsed[0].", '".$tobank."', ".$parsed[1].", ".$parsed[2].")");
