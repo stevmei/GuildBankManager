@@ -27,7 +27,7 @@ if (!file_exists("./".toSaferValue(@$_POST["parselua_file"]))) {
 			$hereweare = 3;
 		}
 		$newbank = false;
-		if (preg_match("@\[\"[A-Za-z]*\"\]@", $line, $matches) == 1) {
+		if (preg_match("@\[\"[A-Za-zÄÖÜäöüß]*\"\]@", $line, $matches) == 1) {
 			$hereweare = 3;
 			$bankcount = $bankcount + 1;
 			$tobank = substr($matches[0], 2, strlen($matches[0])-4);
@@ -70,9 +70,13 @@ if (!file_exists("./".toSaferValue(@$_POST["parselua_file"]))) {
 		}
 	}
 	@mysql_free_result($result);
+	mysql_query("DELETE FROM ".$databasename.".".$tableprefix."guildbank WHERE bankchar = ''");
+	mysql_query("DELETE FROM ".$databasename.".".$tableprefix."guildbank WHERE itemname = ''");
+	echo "<br><b>Fehlerhafte Einträge gelöscht!</b>\n";
+	mysql_query("INSERT INTO ".$databasename.".".$tableprefix."parsinghistory (timestamp) VALUES (NOW())");
+	echo "<br><b>Aktueller Stand (Datum) auf Jetzt gesetzt!</b>\n";
 	echo "<br><b>DB-Aktualisierung beendet!</b>\n";
 	echo "</div>\n";
-	mysql_query("INSERT INTO ".$databasename.".".$tableprefix."parsinghistory (timestamp) VALUES (NOW())");
 }
 ?>
 </div>

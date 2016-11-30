@@ -5,7 +5,7 @@ CREATE TABLE `gbm_gbphistory` (
   `type` int(11) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
   `points` int(11) DEFAULT NULL,
-  `info` text,
+  `info` text DEFAULT NULL,
   `timestamp` datetime DEFAULT NULL,
   PRIMARY KEY (`historyid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8$$
@@ -15,7 +15,7 @@ delimiter $$
 
 CREATE TABLE `gbm_guildbank` (
   `entryid` int(11) NOT NULL AUTO_INCREMENT,
-  `itemname` text,
+  `itemname` text DEFAULT NULL,
   `itemcount` int(11) DEFAULT NULL,
   `bankchar` varchar(100) DEFAULT NULL,
   `itemid` int(11) DEFAULT NULL,
@@ -70,5 +70,14 @@ delimiter $$
 CREATE TABLE `gbm_hiddenitems` (
   `entryid` int(11) NOT NULL AUTO_INCREMENT,
   `itemid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`entryid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8$$
+
+delimiter $$
+
+CREATE TABLE `gbm_itemnotes` (
+  `entryid` int(11) NOT NULL AUTO_INCREMENT,
+  `itemid` int(11) DEFAULT NULL,
+  `itemnote` text DEFAULT NULL,
   PRIMARY KEY (`entryid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8$$
